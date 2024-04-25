@@ -9,21 +9,53 @@
 /* Begin PBXBuildFile section */
 		B83318FE2BD92C3D00E90568 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83318FD2BD92C3D00E90568 /* AppDelegate.swift */; };
 		B83319002BD92C3D00E90568 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83318FF2BD92C3D00E90568 /* SceneDelegate.swift */; };
-		B83319022BD92C3D00E90568 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83319012BD92C3D00E90568 /* ViewController.swift */; };
-		B83319052BD92C3D00E90568 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B83319042BD92C3D00E90568 /* Base */; };
+		B83319022BD92C3D00E90568 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83319012BD92C3D00E90568 /* MainVC.swift */; };
 		B83319072BD92C3F00E90568 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83319062BD92C3F00E90568 /* Assets.xcassets */; };
 		B833190A2BD92C3F00E90568 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B83319092BD92C3F00E90568 /* Base */; };
+		B833191B2BD9337200E90568 /* OnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B833191A2BD9337200E90568 /* OnBoardingVC.swift */; };
+		B833191F2BD9359800E90568 /* Nunito.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B833191E2BD9359800E90568 /* Nunito.ttf */; };
+		B84A80742BD9366700120F32 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B84A80732BD9366700120F32 /* SnapKit */; };
+		B84A80762BD9366700120F32 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = B84A80752BD9366700120F32 /* SnapKit-Dynamic */; };
+		B84A80782BD938F500120F32 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B84A80772BD938F500120F32 /* Nunito-Bold.ttf */; };
+		B84A807B2BD94D7B00120F32 /* UIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A807A2BD94D7B00120F32 /* UIConfig.swift */; };
+		B84A807E2BDA137600120F32 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B84A807D2BDA137600120F32 /* Lottie */; };
+		B84A80812BDA146500120F32 /* launchAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = B84A80802BDA146500120F32 /* launchAnimation.json */; };
+		B84A80832BDA148100120F32 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80822BDA148100120F32 /* LaunchVC.swift */; };
+		B84A80852BDA163E00120F32 /* animationGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = B84A80842BDA163E00120F32 /* animationGif.gif */; };
+		B84A808C2BDA3D3200120F32 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A808B2BDA3D3200120F32 /* ChatModel.swift */; };
+		B84A808F2BDA3D7600120F32 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = B84A808E2BDA3D7600120F32 /* GoogleGenerativeAI */; };
+		B84A80932BDA3E9400120F32 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80922BDA3E9400120F32 /* APIKey.swift */; };
+		B84A80952BDA3F4900120F32 /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = B84A80942BDA3F4900120F32 /* Key.plist */; };
+		B84A80992BDA48AE00120F32 /* CustomUIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80982BDA48AE00120F32 /* CustomUIScrollView.swift */; };
+		B84A80A12BDA616500120F32 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A02BDA616500120F32 /* ChatTableViewCell.swift */; };
+		B84A80A32BDA651500120F32 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A22BDA651500120F32 /* ChatService.swift */; };
+		B84A80A52BDA713A00120F32 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A42BDA713A00120F32 /* ChatItem.swift */; };
+		B84A80A72BDA71A500120F32 /* ChatItemBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B83318FA2BD92C3D00E90568 /* My AI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My AI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83318FD2BD92C3D00E90568 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B83318FF2BD92C3D00E90568 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B83319012BD92C3D00E90568 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B83319042BD92C3D00E90568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B83319012BD92C3D00E90568 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		B83319062BD92C3F00E90568 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B83319092BD92C3F00E90568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B833190B2BD92C3F00E90568 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B833191A2BD9337200E90568 /* OnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingVC.swift; sourceTree = "<group>"; };
+		B833191E2BD9359800E90568 /* Nunito.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nunito.ttf; sourceTree = "<group>"; };
+		B84A80772BD938F500120F32 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		B84A807A2BD94D7B00120F32 /* UIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConfig.swift; sourceTree = "<group>"; };
+		B84A80802BDA146500120F32 /* launchAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launchAnimation.json; sourceTree = "<group>"; };
+		B84A80822BDA148100120F32 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
+		B84A80842BDA163E00120F32 /* animationGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = animationGif.gif; sourceTree = "<group>"; };
+		B84A808B2BDA3D3200120F32 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		B84A80922BDA3E9400120F32 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		B84A80942BDA3F4900120F32 /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
+		B84A80982BDA48AE00120F32 /* CustomUIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIScrollView.swift; sourceTree = "<group>"; };
+		B84A80A02BDA616500120F32 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		B84A80A22BDA651500120F32 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		B84A80A42BDA713A00120F32 /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItemBorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +63,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84A80742BD9366700120F32 /* SnapKit in Frameworks */,
+				B84A80762BD9366700120F32 /* SnapKit-Dynamic in Frameworks */,
+				B84A807E2BDA137600120F32 /* Lottie in Frameworks */,
+				B84A808F2BDA3D7600120F32 /* GoogleGenerativeAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +92,157 @@
 		B83318FC2BD92C3D00E90568 /* My AI */ = {
 			isa = PBXGroup;
 			children = (
-				B83318FD2BD92C3D00E90568 /* AppDelegate.swift */,
-				B83318FF2BD92C3D00E90568 /* SceneDelegate.swift */,
-				B83319012BD92C3D00E90568 /* ViewController.swift */,
-				B83319032BD92C3D00E90568 /* Main.storyboard */,
-				B83319062BD92C3F00E90568 /* Assets.xcassets */,
-				B83319082BD92C3F00E90568 /* LaunchScreen.storyboard */,
+				B83319112BD92E0000E90568 /* Features */,
+				B83319122BD92E0C00E90568 /* Core */,
 				B833190B2BD92C3F00E90568 /* Info.plist */,
 			);
 			path = "My AI";
+			sourceTree = "<group>";
+		};
+		B83319112BD92E0000E90568 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B84A808A2BDA3D0900120F32 /* Service */,
+				B84A80792BD94D5E00120F32 /* Protocol */,
+				B83319132BD92E2100E90568 /* View */,
+				B83319172BD92E9A00E90568 /* ViewModel */,
+				B83319152BD92E3000E90568 /* Model */,
+				B83319162BD92E3700E90568 /* Controller */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		B83319122BD92E0C00E90568 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80892BDA3BCD00120F32 /* Key */,
+				B833191C2BD9356500E90568 /* Asset */,
+				B83319082BD92C3F00E90568 /* LaunchScreen.storyboard */,
+				B83318FF2BD92C3D00E90568 /* SceneDelegate.swift */,
+				B83318FD2BD92C3D00E90568 /* AppDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B83319132BD92E2100E90568 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80882BDA362B00120F32 /* TableView */,
+				B84A80872BDA354800120F32 /* ScrollView */,
+				B84A80A42BDA713A00120F32 /* ChatItem.swift */,
+				B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B83319152BD92E3000E90568 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B84A808B2BDA3D3200120F32 /* ChatModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B83319162BD92E3700E90568 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80862BDA351C00120F32 /* ViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B83319172BD92E9A00E90568 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B833191C2BD9356500E90568 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				B84A807F2BDA137E00120F32 /* Animation */,
+				B833191D2BD9356D00E90568 /* Font */,
+				B83319062BD92C3F00E90568 /* Assets.xcassets */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		B833191D2BD9356D00E90568 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				B833191E2BD9359800E90568 /* Nunito.ttf */,
+				B84A80772BD938F500120F32 /* Nunito-Bold.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		B84A80792BD94D5E00120F32 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B84A807A2BD94D7B00120F32 /* UIConfig.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B84A807F2BDA137E00120F32 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80842BDA163E00120F32 /* animationGif.gif */,
+				B84A80802BDA146500120F32 /* launchAnimation.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		B84A80862BDA351C00120F32 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80822BDA148100120F32 /* LaunchVC.swift */,
+				B833191A2BD9337200E90568 /* OnBoardingVC.swift */,
+				B83319012BD92C3D00E90568 /* MainVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B84A80872BDA354800120F32 /* ScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80982BDA48AE00120F32 /* CustomUIScrollView.swift */,
+			);
+			path = ScrollView;
+			sourceTree = "<group>";
+		};
+		B84A80882BDA362B00120F32 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				B84A809F2BDA612C00120F32 /* Cell */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		B84A80892BDA3BCD00120F32 /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80922BDA3E9400120F32 /* APIKey.swift */,
+				B84A80942BDA3F4900120F32 /* Key.plist */,
+			);
+			path = Key;
+			sourceTree = "<group>";
+		};
+		B84A808A2BDA3D0900120F32 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80A22BDA651500120F32 /* ChatService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B84A809F2BDA612C00120F32 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B84A80A02BDA616500120F32 /* ChatTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +261,12 @@
 			dependencies = (
 			);
 			name = "My AI";
+			packageProductDependencies = (
+				B84A80732BD9366700120F32 /* SnapKit */,
+				B84A80752BD9366700120F32 /* SnapKit-Dynamic */,
+				B84A807D2BDA137600120F32 /* Lottie */,
+				B84A808E2BDA3D7600120F32 /* GoogleGenerativeAI */,
+			);
 			productName = "My AI";
 			productReference = B83318FA2BD92C3D00E90568 /* My AI.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +295,11 @@
 				Base,
 			);
 			mainGroup = B83318F12BD92C3D00E90568;
+			packageReferences = (
+				B84A80722BD9366700120F32 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B84A807C2BDA137600120F32 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				B84A808D2BDA3D7600120F32 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+			);
 			productRefGroup = B83318FB2BD92C3D00E90568 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +314,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84A80952BDA3F4900120F32 /* Key.plist in Resources */,
+				B833191F2BD9359800E90568 /* Nunito.ttf in Resources */,
 				B83319072BD92C3F00E90568 /* Assets.xcassets in Resources */,
+				B84A80812BDA146500120F32 /* launchAnimation.json in Resources */,
+				B84A80782BD938F500120F32 /* Nunito-Bold.ttf in Resources */,
+				B84A80852BDA163E00120F32 /* animationGif.gif in Resources */,
 				B833190A2BD92C3F00E90568 /* Base in Resources */,
-				B83319052BD92C3D00E90568 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +331,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83319022BD92C3D00E90568 /* ViewController.swift in Sources */,
+				B83319022BD92C3D00E90568 /* MainVC.swift in Sources */,
+				B84A807B2BD94D7B00120F32 /* UIConfig.swift in Sources */,
+				B84A808C2BDA3D3200120F32 /* ChatModel.swift in Sources */,
+				B833191B2BD9337200E90568 /* OnBoardingVC.swift in Sources */,
 				B83318FE2BD92C3D00E90568 /* AppDelegate.swift in Sources */,
+				B84A80A12BDA616500120F32 /* ChatTableViewCell.swift in Sources */,
 				B83319002BD92C3D00E90568 /* SceneDelegate.swift in Sources */,
+				B84A80992BDA48AE00120F32 /* CustomUIScrollView.swift in Sources */,
+				B84A80A52BDA713A00120F32 /* ChatItem.swift in Sources */,
+				B84A80A72BDA71A500120F32 /* ChatItemBorder.swift in Sources */,
+				B84A80932BDA3E9400120F32 /* APIKey.swift in Sources */,
+				B84A80832BDA148100120F32 /* LaunchVC.swift in Sources */,
+				B84A80A32BDA651500120F32 /* ChatService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B83319032BD92C3D00E90568 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B83319042BD92C3D00E90568 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B83319082BD92C3F00E90568 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,9 +491,8 @@
 				INFOPLIST_FILE = "My AI/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,9 +517,8 @@
 				INFOPLIST_FILE = "My AI/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -361,6 +554,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B84A80722BD9366700120F32 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		B84A807C2BDA137600120F32 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
+		B84A808D2BDA3D7600120F32 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google-gemini/generative-ai-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B84A80732BD9366700120F32 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B84A80722BD9366700120F32 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		B84A80752BD9366700120F32 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B84A80722BD9366700120F32 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		B84A807D2BDA137600120F32 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B84A807C2BDA137600120F32 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		B84A808E2BDA3D7600120F32 /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B84A808D2BDA3D7600120F32 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B83318F22BD92C3D00E90568 /* Project object */;
 }

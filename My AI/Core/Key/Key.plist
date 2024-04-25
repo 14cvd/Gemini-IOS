@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   Key.plist
-   My AI
-
-   Created by cavID on 25.04.24.
-   Copyright (c) 2024 ___ORGANIZATIONNAME___. All rights reserved.
--->
 <plist version="1.0">
-<dict/>
+<dict>
+    <key>API_KEY</key>
+    <string>AIzaSyCQd_YMse8jDwrURIGI-cbfZSff4ABxblY</string>
+</dict>
 </plist>

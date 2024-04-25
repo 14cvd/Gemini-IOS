@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+
+protocol UIConfig{
+    func config()
+    func constraintConfig()
+}

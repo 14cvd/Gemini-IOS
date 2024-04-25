@@ -6,82 +6,84 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainVC: UIViewController {
    private let customNavigationController = UINavigationController()
-   var isNavigationBarHidden = false
+    private var textData : String =  "Hello"
+//    private let label : UILabel = {
+//       let label = UILabel()
+//        label.text = "Hasan Sabah"
+//        return label
+//    }()
+    
+    private lazy var tableView : UITableView = {
+      let tv = UITableView()
+        tv.dataSource = self
+        tv.delegate = self
+        return tv
+    }()
+    
+    private var chatService = ChatService()
+    private var data : String = ""
+    
+    private lazy var inputTextField : UITextField = {
+       let tf = UITextField()
+        data = tf.text ?? ""
+//        let iv = UIImageView(image: UIImage(systemName: "paperplane"))
+//        let gesture = UIGestureRecognizer(target: self, action: #selector(sender))
+//        iv.isUserInteractionEnabled = true
+//        iv.addGestureRecognizer(gesture)
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .default)
+        let iv = UIImageView(image: UIImage( systemName: "arrow.right", withConfiguration: config))
+        button.tintColor = .white
+        iv.tintColor = .white
+        let action = UIAction { _ in
+            if let items = tf.text {
+                self.chatService.sendMessage(items)
+                self.data = items
+            }
+        }
+        button.setTitle("D", for: .normal)
+        
 
-   private  let label : UILabel = {
-       let label = UILabel()
-        label.text = "Hello World!!!"
-        return label
+        button.addAction(action, for: .touchUpInside)
+        button.backgroundColor = UIColor(named: "main")
+        button.layer.cornerRadius = 30
+        
+        tf.backgroundColor = .red
+        tf.rightViewMode = .always
+        tf.rightView = button
+        return tf
     }()
     
-    private lazy var scrollView : UIScrollView = {
-       let sv = UIScrollView()
-//        sv.backgroundColor = .red
-        
-        
-               // UIScrollView içindeki container view oluşturun
-               let containerView = UIView()
-               sv.addSubview(containerView)
-               
-               // Container view'a SnapKit ile constraints ekleme
-               containerView.snp.makeConstraints { make in
-                   make.edges.width.equalToSuperview() // Container view'ı scrollview'a bağla ve genişliğini ayarla
-               }
-               
-               // UILabel'ları container view içine ekleyin
-               var previousLabel: UILabel?
-               for i in 1...100 {
-                   let label = UILabel()
-                   label.text = "Soru \(i): Bu bir örnek soru"
-                   label.numberOfLines = 0 // Birden fazla satırı desteklemek için
-                   label.textColor = .black
-                   label.textAlignment = .left
-                   label.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-                   containerView.addSubview(label)
-                   
-                   // UILabel'ların SnapKit ile constraints ekleme
-                   label.snp.makeConstraints { make in
-                       make.top.equalTo(previousLabel?.snp.bottom ?? containerView.snp.top).offset(20) // Önceki label'dan veya container view'dan 20 birim aşağıda başla
-                       make.left.equalTo(containerView.snp.left).offset(20) // Sol kenara 20 birim uzaklıkta
-                       make.right.equalTo(containerView.snp.right).offset(-20) // Sağ kenara 20 birim uzaklıkta
-                   }
-                   
-                   previousLabel = label
-               }
-               
-               // Son UILabel'in alt kenarını containerView'a bağlayın ve scrollview'ın içeriğini belirleyin
-               previousLabel?.snp.makeConstraints { make in
-                   make.bottom.equalTo(containerView.snp.bottom).offset(-20) // En son label'ın alt kenarı container view'ın alt kenarına 20 birim uzaklıkta olmalı
-               }
-               
-               sv.contentSize = CGSize(width: view.frame.width, height: containerView.frame.height)
-        sv.delegate = self
-        
-        return sv
-    }()
-    
-    
+    @objc func sender(){
+        chatService.sendMessage(data)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         config()
         configNavigationBar()
         constraintConfig()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
+    
+    
 
 
 }
-
 
 extension MainVC : UIConfig{
     
  
     func config() {
-        view.addSubview(scrollView)
+        view.addSubview(tableView)
+        view.addSubview(inputTextField)
     }
     
     private func configNavigationBar(){
@@ -117,11 +119,6 @@ extension MainVC : UIConfig{
          navigationItem.leftBarButtonItems = [backButton, textItem]
          navigationItem.rightBarButtonItem = forwardButton
         
-        
-        
-        
-       
-        
      }
     @objc private func backAction() {
         self.navigationController?.popViewController(animated: true)
@@ -131,30 +128,73 @@ extension MainVC : UIConfig{
     }
     
     func constraintConfig() {
-//        label.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview()
-//        }
-        
-        scrollView.snp.makeConstraints { make in
+        tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            
+        }
+        
+        
+        inputTextField.snp.makeConstraints { make in
+            make.bottom.equalTo(additionalSafeAreaInsets).offset(-40)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(56)
+            make.width.equalTo(333)
+        }
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        let keyboardHeight = keyboardSize.height
+        let safeAreaBottomInset = view.safeAreaInsets.bottom
+        
+        // Klavyanın yüksekliği kadar view'i yukarı kaydır
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame.origin.y = -keyboardHeight + safeAreaBottomInset
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        // Klavya gizlendiğinde view'i tekrar eski konumuna getir
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame.origin.y = 0
         }
     }
 }
 
 
-extension MainVC : UIScrollViewDelegate{
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-                
-                // Scroll yönüne göre navigation bar'ın görünüp görünmediğini ayarlayın
-                if offsetY > 50 && !isNavigationBarHidden {
-                    isNavigationBarHidden = true
-                    navigationController?.setNavigationBarHidden(true, animated: true)
-                } else if offsetY < 50 && isNavigationBarHidden {
-                    isNavigationBarHidden = false
-                    navigationController?.setNavigationBarHidden(false, animated: true)
-                }
+
+
+
+extension MainVC : UITableViewDelegate , UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chatService.messages.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if  let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.id, for: indexPath) as? ChatTableViewCell{
+            cell.chatMessage = chatService.messages[indexPath.row]
+        
+            
+            
+            return cell
+        }
+        
+        
+        return UITableViewCell()
+    }
+    
+  
 }
+
+
+
+extension MainVC : UITextFieldDelegate {
+    
+    
+}
+
 
