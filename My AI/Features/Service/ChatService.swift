@@ -5,8 +5,8 @@
 //  Created by cavID on 25.04.24.
 //
 import Foundation
-//import SwiftUI
 import GoogleGenerativeAI
+import Combine
 
 enum ChatRole {
     case user
@@ -19,11 +19,11 @@ struct ChatMessage: Identifiable, Equatable {
     var message: String
 }
 
-@Observable
+
 class ChatService {
 
     private var chat: Chat?
-    private(set) var messages = [ChatMessage]()
+    @Published private(set) var messages = [ChatMessage]()
     private(set) var loadingResponse = false
     
     func sendMessage(_ message: String) {
@@ -32,12 +32,13 @@ class ChatService {
         if (chat == nil) {
             let history: [ModelContent] = messages.map { ModelContent(role: $0.role == .user ? "user" : "model", parts: $0.message)}
             chat = GenerativeModel(name: "gemini-pro", apiKey: APIKey.default).startChat(history: history)
-            print("chat : \(chat)")
+//            print("chat : \(chat)")
 
         }
         if let chat {
             // MARK: Add user's message to the list
             messages.append(.init(role: .user, message: message))
+            
             print(messages)
             
 
@@ -45,18 +46,20 @@ class ChatService {
                 do {
                     let response = try await chat.sendMessage(message)
                     print("response : \(response)")
+                    print(loadingResponse)
                     
                     loadingResponse = false
                     
+                    print("123 \(loadingResponse)")
+
                     guard let text = response.text else {
                         messages.append(.init(role: .model, message: "Something went wrong, please try again."))
                         return
                     }
-                    
+//                    print("------------------------------------------------------")
                     messages.append(.init(role: .model, message: text))
-                    print("------------------------------------------------------")
-                    
-                    print("------------------------------------------------------")
+//                    print(message)
+//                    print("------------------------------------------------------")
                 }
                 catch {
                     loadingResponse = false

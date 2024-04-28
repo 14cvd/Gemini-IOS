@@ -7,8 +7,11 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class MainVC: UIViewController {
+    
+    private var cancelable = Set<AnyCancellable>()
    private let customNavigationController = UINavigationController()
     private var textData : String =  "Hello"
 //    private let label : UILabel = {
@@ -21,42 +24,41 @@ final class MainVC: UIViewController {
       let tv = UITableView()
         tv.dataSource = self
         tv.delegate = self
+        tv.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.id)
+        tv.reloadData()
         return tv
     }()
     
-    private var chatService = ChatService()
+    var chatService = ChatService()
     private var data : String = ""
     
-    private lazy var inputTextField : UITextField = {
-       let tf = UITextField()
-        data = tf.text ?? ""
-//        let iv = UIImageView(image: UIImage(systemName: "paperplane"))
-//        let gesture = UIGestureRecognizer(target: self, action: #selector(sender))
-//        iv.isUserInteractionEnabled = true
-//        iv.addGestureRecognizer(gesture)
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .default)
-        let iv = UIImageView(image: UIImage( systemName: "arrow.right", withConfiguration: config))
-        button.tintColor = .white
-        iv.tintColor = .white
-        let action = UIAction { _ in
-            if let items = tf.text {
-                self.chatService.sendMessage(items)
-                self.data = items
+    private lazy var loadingView = UIActivityIndicatorView(style: .medium)
+    
+    private lazy var textFieldRightView: TextFieldRightView = {
+        let rightView = TextFieldRightView()
+        rightView.onClick = { [weak self] in
+            if let text = self?.inputTextField.text {
+                self?.chatService.sendMessage(text)
+                self?.data = text
+                self?.loadingView.startAnimating()
+                self?.inputTextField.text = ""
             }
         }
-        button.setTitle("D", for: .normal)
-        
-
-        button.addAction(action, for: .touchUpInside)
-        button.backgroundColor = UIColor(named: "main")
-        button.layer.cornerRadius = 30
-        
-        tf.backgroundColor = .red
-        tf.rightViewMode = .always
-        tf.rightView = button
-        return tf
+        return rightView
     }()
+    
+    private lazy var inputTextField : UITextField = {
+        let textField = UITextField()
+        textField.layer.cornerRadius = 30
+        textField.layer.borderWidth = 1
+        textField.rightViewMode = .always
+        textFieldRightView.frame = CGRect(origin: .zero, size: .init(width: 40, height: textField.bounds.size.height))
+        textField.rightView = textFieldRightView
+        textField.setLeftPadding(16)
+        return textField
+    }()
+    
+
     
     @objc func sender(){
         chatService.sendMessage(data)
@@ -69,16 +71,24 @@ final class MainVC: UIViewController {
         configNavigationBar()
         constraintConfig()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        chatService.$messages
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] messages in
+                self?.tableView.reloadData()
+                self?.loadingView.stopAnimating()
+            }
+            .store(in: &cancelable)
+        
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
-    
-    
-
-
 }
 
-extension MainVC : UIConfig{
+extension MainVC: UIConfig {
     
  
     func config() {
@@ -107,7 +117,7 @@ extension MainVC : UIConfig{
          let label2 = UILabel()
          label2.text = "• Online"
          label2.font = UIFont(name: "Nunito", size: 17)
-         label2.textColor = .green
+         label2.textColor = .green 
          label2.frame = CGRect(x: 50, y: 22, width: 83, height: 23)
          customView.addSubview(label2)
 
@@ -129,16 +139,15 @@ extension MainVC : UIConfig{
     
     func constraintConfig() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(view.safeAreaLayoutGuide)
             
         }
         
         
         inputTextField.snp.makeConstraints { make in
-            make.bottom.equalTo(additionalSafeAreaInsets).offset(-40)
-            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-40)
             make.height.equalTo(56)
-            make.width.equalTo(333)
+            make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
     
@@ -151,16 +160,23 @@ extension MainVC : UIConfig{
         let keyboardHeight = keyboardSize.height
         let safeAreaBottomInset = view.safeAreaInsets.bottom
         
-        // Klavyanın yüksekliği kadar view'i yukarı kaydır
         UIView.animate(withDuration: 0.3) {
-            self.view.frame.origin.y = -keyboardHeight + safeAreaBottomInset
+//            self.view.frame.origin.y = -keyboardHeight + safeAreaBottomInset
+            let offset = -keyboardHeight + safeAreaBottomInset - 16
+            self.inputTextField.snp.updateConstraints { make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(offset)
+            }
+            self.tableView.contentInset.bottom = offset
         }
     }
 
     @objc private func keyboardWillHide(_ notification: Notification) {
         // Klavya gizlendiğinde view'i tekrar eski konumuna getir
         UIView.animate(withDuration: 0.3) {
-            self.view.frame.origin.y = 0
+            self.inputTextField.snp.updateConstraints { make in
+                make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-40)
+            }
+            self.tableView.contentInset.bottom = 0
         }
     }
 }
@@ -175,10 +191,9 @@ extension MainVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if  let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.id, for: indexPath) as? ChatTableViewCell{
-            cell.chatMessage = chatService.messages[indexPath.row]
-        
-            
+        if let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.id, for: indexPath) as? ChatTableViewCell{
+//            cell.chatMessage = chatService.messages[indexPath.row]
+            cell.label.text = chatService.messages[indexPath.row].message
             
             return cell
         }
@@ -198,3 +213,53 @@ extension MainVC : UITextFieldDelegate {
 }
 
 
+final class TextFieldRightView: UIView {
+    
+    var onClick: (() -> ())?
+    
+    private lazy var button: UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .default)
+        let iv = UIImageView(image: UIImage( systemName: "arrow.right", withConfiguration: config))
+        iv.tintColor = .white
+        let action = UIAction { [weak self]  _ in
+            self?.onClick?()
+        }
+        button.setImage(iv.image, for: .normal)
+        button.addAction(action, for: .touchUpInside)
+        button.tintColor = UIColor(named: "main")
+        return button
+    }()
+    
+    private lazy var stack = UIStackView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureLayout()
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.layoutMargins = .init(top: 0, left: 0, bottom: 0, right: 16)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureLayout() {
+        stack.addArrangedSubview(button)
+        addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            
+        }
+    }
+}
+
+
+
+extension UITextField {
+    func setLeftPadding(_ amount: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+}

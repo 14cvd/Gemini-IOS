@@ -9,7 +9,7 @@ import Foundation
 
 
 
-protocol UIConfig{
+protocol UIConfig {
     func config()
     func constraintConfig()
 }

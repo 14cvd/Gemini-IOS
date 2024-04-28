@@ -31,6 +31,7 @@
 		B84A80A32BDA651500120F32 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A22BDA651500120F32 /* ChatService.swift */; };
 		B84A80A52BDA713A00120F32 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A42BDA713A00120F32 /* ChatItem.swift */; };
 		B84A80A72BDA71A500120F32 /* ChatItemBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */; };
+		B8DB43692BDB7D190006E1AC /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DB43682BDB7D190006E1AC /* CheckInternet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		B84A80A22BDA651500120F32 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		B84A80A42BDA713A00120F32 /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
 		B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItemBorder.swift; sourceTree = "<group>"; };
+		B8DB43682BDB7D190006E1AC /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				B84A80A22BDA651500120F32 /* ChatService.swift */,
+				B8DB43682BDB7D190006E1AC /* CheckInternet.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				B83318FE2BD92C3D00E90568 /* AppDelegate.swift in Sources */,
 				B84A80A12BDA616500120F32 /* ChatTableViewCell.swift in Sources */,
 				B83319002BD92C3D00E90568 /* SceneDelegate.swift in Sources */,
+				B8DB43692BDB7D190006E1AC /* CheckInternet.swift in Sources */,
 				B84A80992BDA48AE00120F32 /* CustomUIScrollView.swift in Sources */,
 				B84A80A52BDA713A00120F32 /* ChatItem.swift in Sources */,
 				B84A80A72BDA71A500120F32 /* ChatItemBorder.swift in Sources */,
