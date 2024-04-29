@@ -29,9 +29,9 @@
 		B84A80992BDA48AE00120F32 /* CustomUIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80982BDA48AE00120F32 /* CustomUIScrollView.swift */; };
 		B84A80A12BDA616500120F32 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A02BDA616500120F32 /* ChatTableViewCell.swift */; };
 		B84A80A32BDA651500120F32 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A22BDA651500120F32 /* ChatService.swift */; };
-		B84A80A52BDA713A00120F32 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A42BDA713A00120F32 /* ChatItem.swift */; };
-		B84A80A72BDA71A500120F32 /* ChatItemBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */; };
 		B8DB43692BDB7D190006E1AC /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DB43682BDB7D190006E1AC /* CheckInternet.swift */; };
+		B8DB43A82BDF86AD0006E1AC /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DB43A62BDF86AD0006E1AC /* ChatItem.swift */; };
+		B8DB43A92BDF86AD0006E1AC /* ChatItemBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DB43A72BDF86AD0006E1AC /* ChatItemBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,9 +55,9 @@
 		B84A80982BDA48AE00120F32 /* CustomUIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIScrollView.swift; sourceTree = "<group>"; };
 		B84A80A02BDA616500120F32 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		B84A80A22BDA651500120F32 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
-		B84A80A42BDA713A00120F32 /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
-		B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItemBorder.swift; sourceTree = "<group>"; };
 		B8DB43682BDB7D190006E1AC /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
+		B8DB43A62BDF86AD0006E1AC /* ChatItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatItem.swift; path = "../../../../My AI copy 2/My AI/Features/View/ChatItem.swift"; sourceTree = "<group>"; };
+		B8DB43A72BDF86AD0006E1AC /* ChatItemBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatItemBorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +129,10 @@
 		B83319132BD92E2100E90568 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8DB43A62BDF86AD0006E1AC /* ChatItem.swift */,
+				B8DB43A72BDF86AD0006E1AC /* ChatItemBorder.swift */,
 				B84A80882BDA362B00120F32 /* TableView */,
 				B84A80872BDA354800120F32 /* ScrollView */,
-				B84A80A42BDA713A00120F32 /* ChatItem.swift */,
-				B84A80A62BDA71A500120F32 /* ChatItemBorder.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -334,8 +334,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DB43A92BDF86AD0006E1AC /* ChatItemBorder.swift in Sources */,
 				B83319022BD92C3D00E90568 /* MainVC.swift in Sources */,
 				B84A807B2BD94D7B00120F32 /* UIConfig.swift in Sources */,
+				B8DB43A82BDF86AD0006E1AC /* ChatItem.swift in Sources */,
 				B84A808C2BDA3D3200120F32 /* ChatModel.swift in Sources */,
 				B833191B2BD9337200E90568 /* OnBoardingVC.swift in Sources */,
 				B83318FE2BD92C3D00E90568 /* AppDelegate.swift in Sources */,
@@ -343,8 +345,6 @@
 				B83319002BD92C3D00E90568 /* SceneDelegate.swift in Sources */,
 				B8DB43692BDB7D190006E1AC /* CheckInternet.swift in Sources */,
 				B84A80992BDA48AE00120F32 /* CustomUIScrollView.swift in Sources */,
-				B84A80A52BDA713A00120F32 /* ChatItem.swift in Sources */,
-				B84A80A72BDA71A500120F32 /* ChatItemBorder.swift in Sources */,
 				B84A80932BDA3E9400120F32 /* APIKey.swift in Sources */,
 				B84A80832BDA148100120F32 /* LaunchVC.swift in Sources */,
 				B84A80A32BDA651500120F32 /* ChatService.swift in Sources */,

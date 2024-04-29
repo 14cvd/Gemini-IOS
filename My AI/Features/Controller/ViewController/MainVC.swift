@@ -20,11 +20,13 @@ final class MainVC: UIViewController {
 //        return label
 //    }()
     
+    private var inputViewContainerBottomConstraint: NSLayoutConstraint?
     private lazy var tableView : UITableView = {
       let tv = UITableView()
         tv.dataSource = self
         tv.delegate = self
         tv.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.id)
+        tv.rowHeight = UITableView.automaticDimension
         tv.reloadData()
         return tv
     }()
@@ -50,11 +52,12 @@ final class MainVC: UIViewController {
     private lazy var inputTextField : UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = 30
-        textField.layer.borderWidth = 1
+//        textField.layer.borderWidth = 1
         textField.rightViewMode = .always
         textFieldRightView.frame = CGRect(origin: .zero, size: .init(width: 40, height: textField.bounds.size.height))
         textField.rightView = textFieldRightView
         textField.setLeftPadding(16)
+        textField.backgroundColor = .systemGray5
         return textField
     }()
     
@@ -139,8 +142,8 @@ extension MainVC: UIConfig {
     
     func constraintConfig() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
-            
+            make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(inputTextField.snp.top).offset(8)
         }
         
         
@@ -171,7 +174,6 @@ extension MainVC: UIConfig {
     }
 
     @objc private func keyboardWillHide(_ notification: Notification) {
-        // Klavya gizlendiğinde view'i tekrar eski konumuna getir
         UIView.animate(withDuration: 0.3) {
             self.inputTextField.snp.updateConstraints { make in
                 make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-40)
@@ -185,21 +187,30 @@ extension MainVC: UIConfig {
 
 
 
-extension MainVC : UITableViewDelegate , UITableViewDataSource{
+extension MainVC : UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatService.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         if let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.id, for: indexPath) as? ChatTableViewCell{
-//            cell.chatMessage = chatService.messages[indexPath.row]
-            cell.label.text = chatService.messages[indexPath.row].message
             
+            cell.label.text = chatService.messages[indexPath.row].message
+            cell.label.numberOfLines = 0
+            cell.isModel = chatService.messages[indexPath.row].role == .model
+            cell.constraintfConfig(isModel: chatService.messages[indexPath.row].role == .model)
             return cell
         }
         
         
         return UITableViewCell()
+    }
+    
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(false)
     }
     
   
@@ -262,4 +273,36 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
     }
+    
 }
+
+
+extension MainVC {
+    private func manageInputEventsForTheSubViews() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameChangeNotfHandler(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameChangeNotfHandler(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardFrameChangeNotfHandler(_ notification: Notification) {
+        
+        if let userInfo = notification.userInfo {
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
+            inputViewContainerBottomConstraint?.constant = isKeyboardShowing ? keyboardFrame.height : 0
+            UIView.animate(withDuration: 0, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                
+                self.view.layoutIfNeeded()
+            }, completion: { (completed) in
+                
+                if isKeyboardShowing {
+                    let lastItem = self.chatService.messages.count - 1
+                    let indexPath = IndexPath(item: lastItem, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            })
+        }
+    }
+}
+
+
